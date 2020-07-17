@@ -1,0 +1,11 @@
+<h1> Welcome, <%= current_customer.username %> </h1>
+
+
+<form action="/bag" method="post">
+<b><label for="all items"> All items: </label></b>
+<br>
+<% @items.each do |item| %>
+    <input type="checkbox" name="customer[item_ids][]" id="<%= item.id %>" value="<%= item.id %>"><%= item.name %> $<%= item.price %><br>
+  <% end %>
+<input type="submit" value="Add to Bag">
+</form>
