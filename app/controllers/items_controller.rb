@@ -7,12 +7,10 @@ class ItemsController < ApplicationController
     erb :'/items/welcome'
   end
 
+get '/items/new' do
 
-    get '/items/new' do
-
-
-        erb :'items/new'
-    end
+  erb :'items/new'
+end
 
 post '/items' do
 @item = Item.new(params[:item])
@@ -31,7 +29,14 @@ end
 
 patch '/items/:id/edit' do
   find_by_id
-
+    @item= Item.find(params[:id])
+    if @item.update_attributes(params[:item])
+       @item.price.build
+      redirect '/welcome', :notice => "Update Completed"
+    else
+      render 'edit'
+    end
+  end
 end
 
 get '/items/:id' do
@@ -43,32 +48,13 @@ get '/items/:id' do
  end
 end
 
-
-    post '/yourbag' do
-        params[:customer][:items].each do |items|
-           if  items["quanity"] != "0"
-            item = Item.find(items[:item_id]) 
-            current_customer 
-           CustomerItem.create(customer_id: current_customer.id, item_id: item.id, quanity: items[:quanity])
-           redirect '/yourbag'
-           else 
-            redirect '/welcome'
-            end
-          end
-        end
-    
-
-    post '/checkout' do 
+post '/checkout' do 
 
     
     end
 
     private 
-      def find_by_id
+      def find_by_id 
         @item = Item.find_by_id(params[:id])
 
       end
-  
-
-
-end

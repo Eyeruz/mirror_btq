@@ -1,23 +1,43 @@
 class CustomersItemsController < ApplicationController
     
-    binding.pry
+  
 get '/yourbag' do
-
-
-    erb :'customer_items/yourbag'
- end
-
-
- patch '/yourbag' do
-
-erb :'customer_items/yourbagpost'
+  @cci = current_customer.customer_items
+   @item_price = @cci.map {|ci| ci.item.price * ci.quanity }.sum
+   
+   erb :'customer_items/yourbag'
  end
  
- get '/edit/customer_item' do
- @item = CustomerItem.find_by_id(params[:id])
+post '/yourbag' do
+ params[:customer][:items].each do |items|
+    if  items["quanity"] != "0"
+     item = Item.find(items[:item_id]) 
+      current_customer 
+    CustomerItem.create(customer_id: current_customer.id, item_id: item.id, quanity: items[:quanity])
+  redirect '/yourbag'
+  else 
+  redirect '/welcome'
+   end
+  end
+end
+
+
+ patch '/ci/:id/edit' do
+    @item = CustomerItem.find_by_id(params[:id])
+ erb :'customer_items/edit_your_bag'
+ end
+ 
+
+get '/checkout' do
+
+erb :'customer_items/checkout'
+end
+
+private
+def find_id 
+    @item = CustomerItem.find_by_id(params[:id])
 
 end
 
 end
-
 
