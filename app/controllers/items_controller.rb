@@ -2,10 +2,13 @@ class ItemsController < ApplicationController
 
 
   get '/welcome' do 
-    redirect_to_if_not_logged_in 
+    redirect_to_if_not_logged_in
     @items = Item.all
     erb :'/items/welcome'
   end
+
+
+
 
 get '/items/new' do
 

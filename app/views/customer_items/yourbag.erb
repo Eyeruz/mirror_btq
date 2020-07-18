@@ -1,8 +1,7 @@
 <h1> Your Bag: </h1>
 
-<form action='/yourbag' method="post">
-<input type="hidden" name="_method" value="patch">
-<% @item = @cci.map {|ci| ci.item.name}.uniq.join(" , ")%>
+<form action='/yourbag' method="get">
+<% @item = @cci.map {|ci| ci.item.name}.uniq.join(" , ") %>
 <div>
 <label for="items"> Items: </label> 
 <%= @item %> 
@@ -14,6 +13,5 @@
 </div>
 <br>
 <br>
-<b><a href="/checkout">checkout</a></b></form>
-
-
+<b><a href="/checkout">checkout</a></b>
+</form>

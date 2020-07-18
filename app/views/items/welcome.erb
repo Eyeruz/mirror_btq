@@ -2,15 +2,19 @@
 
 <br>
 <b><a href="/yourbag"> view your bag </a></b>
+
 <form action="/yourbag" method="post">
 <b><label for="all items"> All items: </label></b>
 <br>
 <% @items.each do |item| %>
-<input type="number" max="10" min="0" name="customer[items][][quanity]" id="<%= item.id %>" value="0">  <%= item.name %> $<%= item.price %> <br>
-<input type="hidden" name="customer[items][][item_id]" value="<%= item.id %>">
-<input type="hidden" name="customer[items][][item_price]" value="<%= item.price %>">
- <% end %>
-<input type="submit" value="Add to Bag">
-<b><a href="/logout">logout </a></b>
-</form>
+    <input type="number" max="10" min="0" name="customer[items][][quanity]" id="<%= item.id %>" value="0"> <%= item.name %> $<%= item.price %>  <br>
+    <input type="hidden" name="customer[items][][item_id]" value="<%= item.id %>">
+    <input type="hidden" name="customer[items][][item_price]" value="<%= item.price %>">
+
+
+    <% end %>
+    <input type="submit" value="Add to Bag">
+    <b><a href="/logout">logout </a></b>
+    </form>
+    
 
