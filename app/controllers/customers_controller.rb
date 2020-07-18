@@ -1,12 +1,11 @@
 class CustomersController < ApplicationController
-
     
+get '/viewprofile' do
 
-    get '/shoes' do
-        
-        erb :'items/shoes'
-    end
-    
+erb :'customers/update'
+
+end
+
 
 
 

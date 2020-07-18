@@ -1,0 +1,15 @@
+<h1> this is your bag </h1>
+
+<form action="/yourbag" method="post">
+<h3> <label for="Your Bag"> All the items in your bag : </label> </h3>
+
+<% current_customer.customer_items.each do |ci| %>
+    <ul>
+<input type="" name="customer[items][][quanity]" id="<%= ci.item.id %>" value="checkbox"> <%= ci.quanity %> <%= ci.item.name %> $<%= ci.item.price.to_f * ci.quanity.to_f  %> <br>
+</li>
+   </ul>
+    <% end %>
+
+<b><a href="/checkout">checkout</a></b></form>
+
+

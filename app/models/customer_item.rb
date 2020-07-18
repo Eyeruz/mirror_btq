@@ -1,4 +1,4 @@
 class CustomerItem < ActiveRecord::Base
-    belongs_to :user
+    belongs_to :customer
     belongs_to :item
 end

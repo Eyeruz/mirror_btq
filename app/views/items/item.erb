@@ -1,0 +1,7 @@
+<h4> item name:  <%= @item.name %> </h4>
+<br>
+<p> item price: $<%= @item.price %></p>
+
+<p> item quanity <input type="number" max= 10 min= 0 value="10" name="item[quanity]"> </p>
+
+<b><a href="/items/<%= @item.id %>/edit">edit item </a></b>

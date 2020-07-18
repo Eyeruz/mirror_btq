@@ -10,18 +10,15 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
- 
+    redirect_to_if_logged_in
   erb :welcome
   end
 
-  post '/' do
 
-    erb :welcome
-  end
   
 
   get '/login' do
-
+    redirect_to_if_logged_in
     erb :login
   end 
 
@@ -38,7 +35,7 @@ class ApplicationController < Sinatra::Base
 
 
   get '/signup' do 
-
+    redirect_to_if_logged_in
       erb :signup
   end
 
@@ -50,28 +47,59 @@ session[:user_id] = customer.id
     redirect '/welcome'
   end
 
-  def logged_in?
 
-    !!session[:user_id]
+
+  get '/logout' do
+
+    session.clear
+    redirect_to_if_not_logged_in 
+    redirect_to_if_logged_in
+  end
+
+  get '/error' do
+
+    erb :error
+    end
+
+helpers do 
+
+  
+  def logged_in?
+   !!session[:user_id]
     #get a true or false 
     #this is true 
-      end
+  end
   
-      def current_customer
-  Customer.find_by_id(session[:user_id])
-    end
+  def current_customer
+    Customer.find_by_id(session[:user_id])
+  end
   
-    def redirect_to_if_logged_in
-      redirect '/welcome' if logged_in?
-   end 
+  def redirect_to_if_logged_in
+    redirect '/welcome' if logged_in?
+  end 
   
-    def redirect_to_if_not_logged_in 
-  redirect '/login' if !logged_in?
-    end
+  def redirect_to_if_not_logged_in 
+    redirect '/login' if !logged_in?
+  end
   
   
-    def login_customer(customer)
-  session[:user_id] = customer.id
-    end
+  def login_customer(customer)
+    session[:user_id] = customer.id
+  end
+
+  def logout 
+
+redirect to '/logout'
+
+  end
+
+  def error
+
+redirect to '/error'
+  end
 
 end
+
+end
+
+
