@@ -9,7 +9,8 @@
 <br>
 <div>
 <label for="total"> Total: </label>
-<%= @item_price %>
+<% @price = @cci.map {|ci| ci.item.price}.join(" , ").sum %>
+<%= @price %>
 </div>
 <br>
 <br>

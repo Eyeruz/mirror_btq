@@ -3,11 +3,7 @@ class CustomersItemsController < ApplicationController
   
 
   get '/yourbag' do
-   
-    @cci = current_customer.customer_items
-
-    @item_price = @cci.map {|ci| ci.item.price }.sum
-
+   @cci = current_customer.customer_items
   erb :'customer_items/yourbag'
    end
 
@@ -22,11 +18,17 @@ class CustomersItemsController < ApplicationController
           end
           redirect '/yourbag'
          end
-       
-       
-  
-patch '/ci/:id/edit' do
+
+
+         get '/ci/:id/edit' do
+
+      CustomerItem.find_by_id(params[:id])
+binding.pry
+         end
+
+      patch '/ci/:id/edit' do
     @item = CustomerItem.find_by_id(params[:id])
+    binding.pry
  erb :'customer_items/edit_your_bag'
  end
  

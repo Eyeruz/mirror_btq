@@ -32,19 +32,13 @@ end
 
 patch '/items/:id/edit' do
   find_by_id
-    @item= Item.find(params[:id])
-    if @item.update_attributes(params[:item])
-       @item.price.build
-      redirect '/welcome', :notice => "Update Completed"
-    else
-      render 'edit'
-    end
-  end
+    @item = Item.find(params[:id])
+  
 end
 
 get '/items/:id' do
  @item = Item.find_by_id(params[:id])
- if @item
+ if @item.update
   erb :'items/item'
  else
   redirect '/welcome'
@@ -61,3 +55,5 @@ post '/checkout' do
         @item = Item.find_by_id(params[:id])
 
       end
+
+    end
