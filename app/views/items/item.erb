@@ -5,3 +5,9 @@
 <p> item quanity <input type="number" max= 10 min= 0 value="10" name="item[quanity]"> </p>
 
 <b><a href="/items/<%= @item.id %>/edit">edit item </a></b>
+
+<form action="/items/<%= @item.id %>" method="post"> 
+<input type="hidden" name="_method" value="delete">
+
+<input type="submit" value="Delete">
+</form>

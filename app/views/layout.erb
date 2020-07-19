@@ -16,6 +16,25 @@
   </head>
   <body>
     <div class="wrapper">
+<nav> 
+<ul>
+<% unless logged_in? %>
+<li><a href="/login"> Login </a></li>  
+<li><a href="/signup"> Signup </a></li>  
+
+<% else %>
+
+<li><b> Happy shopping, <%= current_customer.username %>!<b></li>
+<li><a href="/welcome"> Home </a></li>
+<li><a href="/logout"> Logout </a></li>  
+<li><b><a href="/yourbag"> View Your Bag </a></b></li>
+<b><a href=<b><a href='/items/new'> Add Item & Sell </a></b> <br>  
+<% end %>
+
+</ul>
+</nav>
+
+
 
         <%= yield %>
 

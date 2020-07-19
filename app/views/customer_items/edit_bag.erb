@@ -1,0 +1,23 @@
+
+
+
+<form action="/edit_bag" method="post">
+<input type="hidden" name="_method" value="patch">
+<br>
+<label for="Name">Name:</label>
+  <input type="text" name="items[name]" id="name" value="<%= @items.item.name %>">
+  <br>
+<div>
+  <label for="price">Price:</label>
+  <input type="text" name="item[price]" id="price" value="<%= @items.item.price %>">
+</div>
+<br>
+<div>
+<label for="price">Price:</label>
+  <input type="text" name="item[quanity]" id="quanity" value="<%= @items.quanity %>">
+<div>
+
+<br>
+<input type="submit" value="Update Item">
+</form>
+

@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, "hello"
+    set :session_secret, "youbetternoteverevereverevereverevereverevertellanyone"
   end
 
   get "/" do
@@ -41,11 +41,15 @@ class ApplicationController < Sinatra::Base
 
 
   post '/signup' do 
+
 customer = Customer.new(username: params[:username], email: params[:email], password: params[:password])
-    customer.save
+    if customer.save
 session[:user_id] = customer.id
     redirect '/welcome'
+    else 
+      redirect '/signup'
   end
+end
 
 
 
