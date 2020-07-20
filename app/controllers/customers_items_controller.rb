@@ -1,9 +1,8 @@
 class CustomersItemsController < ApplicationController
     
-  
+
   get '/yourbag' do
    @cci = current_customer.items.uniq
-
   erb :'customer_items/yourbag'
    end
 
@@ -19,24 +18,15 @@ class CustomersItemsController < ApplicationController
           redirect '/yourbag'
          end
 
-         get '/ci' do
+  
+   get '/edit_bag' do
+     @items = current_customer.items
+      
+     erb :'customer_items/edit_bag'
+    
+    end
 
-
-          erb :'customer_items/index'
-         end
-
-
-
-
-
-
-
-
-
-
-
-
-
+         
 
 get '/customer_items/new' do
 
@@ -45,24 +35,9 @@ get '/customer_items/new' do
 
 
 
-
-
- get '/ci/:id/edit' do 
-        @ci = 
-        
-        erb :'ci/edit'
-        end
-
-
- patch '/ci/:id/edit' do
-          find_by_id
-            @ci = ci.find(params[:id])
-          
-        end
-      
 get '/checkout' do
 
-  current_customer.customer_items.clear
+  current_customer.items.clear
 
   erb :'customer_items/checkout'
 end
@@ -71,6 +46,7 @@ end
 private
 def find_id 
     @item = CustomerItem.find_by_id(params[:id])
+
 
 end
 

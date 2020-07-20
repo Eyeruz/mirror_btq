@@ -3,24 +3,25 @@ class ItemsController < ApplicationController
 
   get '/welcome' do 
     redirect_to_if_not_logged_in
-    
-    @items = Item.all
+      @items = Item.all
+
     erb :'/items/welcome'
   end
 
 
 get '/items/new' do
-  binding.pry
+
   erb :'items/new'
 end
 
 post '/items' do
 @item = Item.new(params[:item])
+
 if @item.save
   redirect '/welcome'
 elsif @item.name = ""
 error
-elsif @item.password = ""
+elsif @item.price = ""
 error
 else
 error
@@ -29,6 +30,7 @@ end
 
 get '/items/:id/edit' do 
 find_by_id
+binding.pry
   erb :'items/edit'
 end
 
