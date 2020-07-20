@@ -2,18 +2,21 @@
 
 
 
+
+
 <form action="/yourbag" method="post">
 <b><label for="all items"> All items: </label></b>
 <br>
 <% @items.each do |item| %>
 
 
-<br>
-<input type="checkbox" name="customer[items][][added]" <p><a href="/items/<%= item.id %>"><%= item.name %></a> $<%= item.price %> </p>
-<% end %>
-    
+    <input type="number" max="1" min="0" name="customer[items][][quanity]" id="<%= item.id %>" value="0"> <p><a href="/items/<%= item.id %>"> <%= item.name %></a> </p> $<%= item.price %> <br>	
+    <input type="hidden" name="customer[items][][item_id]" value="<%= item.id %>">	
+    <input type="hidden" name="customer[items][][item_price]" value="<%= item.price %>">
+    	<br>
+     <% end %>
 
-    <input type="submit" value="Add to Bag">
+<input type="submit" value="Add to Bag">
   
     </form>
     

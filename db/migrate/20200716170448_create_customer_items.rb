@@ -3,7 +3,7 @@ class CreateCustomerItems < ActiveRecord::Migration
     create_table :customer_items do |t|
         t.string :customer_id
         t.string :item_id
-        
+        t.integer :quanity
 
       t.timestamps null: false
     end

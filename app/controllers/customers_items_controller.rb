@@ -7,16 +7,19 @@ class CustomersItemsController < ApplicationController
    end
 
 
+
    post '/yourbag' do
-        params[:customer][:items].each do |items|
-           if items["added"] = "yes"
-            item = Item.find(items[:item_id]) 
-             current_customer 
-  CustomerItem.create(customer_id: current_customer.id, item_id: item.id, quanity: items[:quanity])
-           end
-          end
-          redirect '/yourbag'
-         end
+    params[:customer][:items].each do |items|
+  if items["quanity"] != "0"
+    item = Item.find(items[:item_id])
+  current_customer 
+CustomerItem.create(customer_id: current_customer.id, item_id: item.id, quanity: items[:quanity])
+  end
+    end
+redirect '/yourbag'
+      end   
+
+        
 
   
    get '/edit_bag' do
@@ -43,12 +46,5 @@ get '/checkout' do
 end
 
 
-private
-def find_id 
-    @item = CustomerItem.find_by_id(params[:id])
-
-
-end
-
-end
+end 
 
