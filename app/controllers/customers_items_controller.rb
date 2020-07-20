@@ -35,6 +35,30 @@ get '/customer_items/new' do
 
     erb :'customer_items/new'
     end
+    
+    get '/customer_items/:id' do
+
+      @item = current_customer.customer_items.find_by(params[:id])
+
+      if @item
+
+       erb :'customer_items/delete'
+      else
+       redirect '/welcome'
+      end
+     end
+
+
+    delete '/customer_items/:id' do
+      @item = current_customer.customer_items.find(params[:id])
+  
+       @item.destroy
+        
+       redirect "/yourbag"
+
+        end
+
+
 
 
 

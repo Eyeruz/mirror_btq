@@ -1,24 +1,12 @@
 <h1> Your Bag: </h1>
-
 <form action='/yourbag' method="get">
-<% @name = @cci.map {|ci| ci.name }.uniq.join(" , ") %>
+<% @cci.map do |item|  %>
+   <p><a href="/customer_items/<%= item.id %>"><%= item.name %></a> </p> 
+     $<%= item.price %>
+     
+     <% end %>
+     </form>
 
-<div>
-<label for="items"> Items: </label> 
-<%= @name %> 
-</div>
-<br>
-<div>
-<label for="total"> Total: </label>
-<% @price = @cci.map {|ci| ci.price }.join(" , ").sum.to_f %>
-
-<%= @price %>
-</div>
-<br>
-
+    
 <b><a href="/checkout">checkout</a></b>
  <br>  
-<b><a href=<b><a href='/edit_bag'> Edit Your Bag </a></b>
-
-
-</form>
