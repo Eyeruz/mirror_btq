@@ -2,12 +2,16 @@
 <form action='/yourbag' method="get">
 
 <% price = 0 %>
+<% quanity = 0 %>
 <% @cci.map do |item| %>
 <p> Items: <a href="/customer_items/<%= item.item.id %>"><%= item.item.name %></a> <%= item.item.price %>
-  <% price += item.item.price %>
+  <% price += item.item.price * item.quanity %>
+
   <% end %>
    <br>
+
 <p> total: <%= price %> </p>
+<p> quanity: <% quanity %> </p>
 
 
     

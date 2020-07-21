@@ -3,8 +3,8 @@ class CustomersItemsController < ApplicationController
 
   get '/yourbag' do
 
-   @cci = current_customer.customer_items
-@name =@cci.map {|i| i.item.name}.uniq
+   @cci = current_customer.customer_items.uniq
+
   erb :'customer_items/yourbag'
    end
 
@@ -13,7 +13,7 @@ class CustomersItemsController < ApplicationController
    post '/yourbag' do
     params[:customer][:items].each do |items|
       if items["quanity"] != "0"
-   item = Item.find_by(id: items[:item_id])
+   item = Item.find(items[:item_id])
   current_customer 
 CustomerItem.create(customer_id: current_customer.id, item_id: item.id, quanity: items[:quanity])
   end
