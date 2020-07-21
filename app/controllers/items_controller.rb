@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   get '/welcome' do 
     redirect_to_if_not_logged_in
       @items = Item.all
-
     erb :'/items/welcome'
   end
 
@@ -16,7 +15,7 @@ end
 
 post '/items' do
 @item = Item.new(params[:item])
-
+current_customer = @item.user
 if @item.save
   redirect '/welcome'
 elsif @item.name = ""
@@ -30,12 +29,13 @@ end
 
 get '/items/:id/edit' do 
 find_by_id
-binding.pry
+
   erb :'items/edit'
 end
 
 patch '/items/:id/edit' do
 find_by_id
+binding.pry
 if @item.update(
     name: params[:item][:name], 
        price: params[:item][:price])

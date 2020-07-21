@@ -1,11 +1,14 @@
 <h1> Your Bag: </h1>
 <form action='/yourbag' method="get">
-<% @cci.map do |item|  %>
-   <p><a href="/customer_items/<%= item.id %>"><%= item.name %></a> </p> 
-     $<%= item.price %>
-     
-     <% end %>
-     </form>
+
+<% price = 0 %>
+<% @cci.map do |item| %>
+<p> Items: <a href="/customer_items/<%= item.item.id %>"><%= item.item.name %></a> <%= item.item.price %>
+  <% price += item.item.price %>
+  <% end %>
+   <br>
+<p> total: <%= price %> </p>
+
 
     
 <b><a href="/checkout">checkout</a></b>

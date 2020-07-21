@@ -2,13 +2,13 @@
 <form action="/edit_bag" method="post">
 <input type="hidden" name="_method" value="patch">
 <br>
-
 <%  @items.map do |item|%>
-<label for="quanity"> Quanity:</label>
-  <input type="number" max="10" min="0" name="item[quanity]" id="quanity" value="<%= item.quanity %>">
+<label for="quanity"> Quanity: </label>
+<%= item.name %>
+  <input type="number" max="10" min="0" name="customer[items][][quanity]" id="quanity" value="<%= item.quanity %>">
   <input type="name" id="name" name="item[name]" value="<%= item.name %>">
+  
   <% end %>
-<br>
-<input type="submit" value="Update">
 </form>
+
 

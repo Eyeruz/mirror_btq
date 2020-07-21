@@ -3,7 +3,11 @@
 <br>
 <p> item price: $<%= @item.item.price %></p>
 
-<form action="/customer_items/<%= @item.id %>" method="post"> 
+<p> item quanity: <%= @item.quanity %></p>
+
+<form action="/customer_items/<%= @item.item.id %>" method="post"> 
 <input type="hidden" name="_method" value="delete">
+
 <input type="submit" value="Delete">
 </form>
+
