@@ -1,29 +1,44 @@
-<h1> Welcome </h1>
+<b><h1 class="left #8d6e63 brown-text text-darken-1"> All Items </h1><b>
 
 
 
 
 
 <form action="/yourbag" method="post">
-<b><label for="all items"> All items: </label></b>
+<div class="left ">
+</div>
 <br>
 <% @items.each do |item| %>
+<table class="striped centered #8d6e63 brown-text text-darken-1">
+        <thead>
+          <tr>
+              <th>Item Name:</th>
+              <th>Item Price: </th>
+              <th>Item Quantity:</th>
+          </tr>
+        </thead>
 
-
-    <input type="number" max="10" min="0" name="customer[items][][quanity]" id="<%= item.id %>" value="0"> 
-    <%= item.name %></a> </p> 
-    
-    $<%= item.price %> <br>	
-    <input type="hidden" name="customer[items][][item_id]" value="<%= item.id %>">	
-    <input type="hidden" name="customer[items][][item_price]" value="<%= item.price %>">
+        <tbody>
+          <tr>
+            <td><%= item.name %> </td>
+            <td>$<%= item.price %> </td>
+            <td><input type="number" max="10" min="0" name="customer[items][][quanity]" id="<%= item.id %>" value="0"> 
+           
+            </td>
+          </tr>
+          <input type="hidden" name="customer[items][][item_id]" value="<%= item.id %>">	
+          <input type="hidden" name="customer[items][][item_price]" value="<%= item.price %>">
+      
+        </tbody>
+      </table>
 
 
 
     	<br>
      <% end %>
 
-<input type="submit" value="Add to Bag">
-  
+     <a class="waves-effect waves-teal btn-flat #8d6e63 brown lighten-2"> <input type="submit" value="Add to Bag"> </a>
+
     </form>
     
 

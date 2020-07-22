@@ -5,7 +5,7 @@ class CustomersItemsController < ApplicationController
 
    @cci = current_customer.customer_items.uniq
 
-  erb :'customer_items/yourbag'
+   erb :'customer_items/yourbag'
    end
 
 
@@ -26,7 +26,6 @@ redirect '/yourbag'
   
    get '/edit_bag' do
      @items = current_customer.items
-
      erb :'customer_items/edit_bag'
     
     end
@@ -55,6 +54,27 @@ if @item
      end
 
 
+     get '/customer_items/:id/edit' do
+      @item = current_customer.customer_items.find_by(item_id: params[:id])
+
+          erb :'customer_items/edit'
+     end
+
+
+     patch '/customer_items/:id/edit' do
+ @item = current_customer.customer_items.find_by(item_id: params[:id])
+
+   if @item.update(
+       quanity: params[:customer][:items][0][:quanity])
+       redirect "/customer_items/#{@item.item.id}"
+       
+    else
+      redirect '/customer_items/#{@item.item.id}/edit'
+      end
+ end
+
+
+
     delete '/customer_items/:id' do
       @item = current_customer.customer_items.find_by(item_id: params[:id])
   
@@ -69,7 +89,7 @@ if @item
 
 
 get '/checkout' do
-
+#if there is no items in bag alert error 
   current_customer.items.clear
 
   erb :'customer_items/checkout'

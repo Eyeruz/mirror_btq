@@ -1,0 +1,33 @@
+<h4 class="left"> Quanity: </h4>
+<form action="/customer_items/<%= @item.item.id %>/edit" method="post">
+<input type="hidden" name="_method" value="patch">
+<br>
+<%  @item.tap do |item|%>
+  <table>
+        <thead>
+          <tr>
+            <th>Item Quanity:</th>
+              <th>Item Name:</th>
+              <th>Item Price:<th>
+           
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><input type="number" max="10" min="0" name="customer[items][][quanity]" id="quanity" value="<%= item.quanity %>">  
+            </td>
+            <td><%= item.item.name %></td>
+            <td>$<%= item.item.price %></td>
+          </tr>
+        </tbody>
+      </table>
+
+  <% end %> <br>
+  <br>
+  <button class="waves-effect waves-brown btn-flat  #8d6e63 brown lighten-2" <input type="submit" value="Change Quanity" > Change Quanity <i class="material-icons right"></i>
+  </button>
+
+</form>
+
+
