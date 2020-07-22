@@ -25,19 +25,23 @@
   </head>
   <br>
 <body class="#d7ccc8 brown lighten-4 z-depth-5">
-<div class="containter">
+<div class="container">
 <nav class="#a1887f brown lighten-3"> 
-
-<ul class="right">
+<div class="container">
+<ul class="left">
 <% unless logged_in? %>
 
 <li><a href="/login"> Login </a></li>  
-<li><a href="/signup"> Signup </a></li>  
+<li><a href="/signup"> Signup </a></li> 
 <li class="brand-logo"> Mirror Boutique </a><li>
 
 <% else %>
-
+<div class="conatainer">
+<ul class="right" style="marign: 25px">
 <li> <a href="/" class="brand-logo"> Mirror Boutique </a><li>
+</ul>
+</div>
+<li> <a href="/" class="left"> Home </a><li>
 <li><b><a href="/logout"> Logout </a><b></li>  
 <li><b><a href="/yourbag"> View Your Bag </a></b></li>
 <!-- <b><a href=<b><a href='/items/new'> Add Item & Sell </a></b> <br> -->
@@ -46,20 +50,20 @@
 </ul>
 </nav>
 <nav class="#a1887f brown lighten-3">
-<div class="right"> <p><b>Happy shopping, <%= current_customer.username %>! </p>  <b>
+<div class="right"> <p>Happy shopping, <%= current_customer.username %>!</p>
 </nav>
 </div>
 <% end %>
   <!-- add error messages before this line -->
             <!-- main content -->
-            <div class="#bcaaa4 brownlighten-4" style="margin: 25px" >
+            <div class="#bcaaa4 brownlighten-4" >
                   <%= yield %>
              <!-- end main content -->
 
 
 
       <footer class="branding">
-        <small>&copy; 2020 <strong>MirrorBtq</strong></small>
+        <small>&copy; 2020 <strong>Mirror..Mirror on the wall</strong></small>
       </footer>
     </div>
 

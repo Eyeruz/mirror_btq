@@ -23,8 +23,7 @@ redirect '/yourbag'
 
         
 
-  
-   get '/edit_bag' do
+get '/edit_bag' do
      @items = current_customer.items
      erb :'customer_items/edit_bag'
     

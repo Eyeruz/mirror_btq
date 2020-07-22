@@ -1,4 +1,4 @@
-
+<div class="container">
 <table class="striped">
 <thead>
   <tr>
@@ -17,14 +17,16 @@
   </tr>
 </tbody>
 </table>
-
+</div>
+<div class="container"> 
 
 <form action="/customer_items/<%= @item.item.id %>" method="post"> 
 <input type="hidden" name="_method" value="delete">
-
 <button class="waves-effect waves-#8d6e63 brown lighten-2 btn-flat"<input type="submit" value="Delete"> <b> Delete <b>
 <i class="material-icons right"></i> 
 </button>
 <a class="waves-effect waves-#8d6e63 brown lighten-2 btn-flat" href="/customer_items/<%= @item.item.id %>/edit">edit item </a>
 </form>
+
+</div>
 

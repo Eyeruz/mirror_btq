@@ -4,29 +4,27 @@ class ItemsController < ApplicationController
   get '/welcome' do 
     redirect_to_if_not_logged_in
       @items = Item.all
+       erb :'/items/welcome'
+    end
 
-    erb :'/items/welcome'
+
+  get '/items/new' do
+    erb :'items/new'
   end
 
-
-get '/items/new' do
-
-  erb :'items/new'
-end
-
 post '/items' do
-@item = Item.new(params[:item])
-current_customer = @item.user
-if @item.save
-  redirect '/welcome'
-elsif @item.name = ""
-error
-elsif @item.price = ""
-error
-else
-error
-end
-end
+  @item = Item.new(params[:item])
+  current_customer = @item.user
+        if @item.save
+      redirect '/welcome'
+      elsif @item.name = ""
+            error
+      elsif @item.price = ""
+              error
+          else
+              error
+        end
+    end
 
 get '/items/:id/edit' do 
 find_by_id

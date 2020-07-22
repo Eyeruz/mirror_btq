@@ -11,6 +11,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     redirect_to_if_logged_in
+    @items = Item.all
   erb :welcome
   end
 
@@ -41,10 +42,11 @@ class ApplicationController < Sinatra::Base
 
 
   post '/signup' do 
-
 customer = Customer.new(username: params[:username], email: params[:email], password: params[:password])
-    if customer.save
+
+if customer.save
 session[:user_id] = customer.id
+
     redirect '/welcome'
     else 
       redirect '/signup'

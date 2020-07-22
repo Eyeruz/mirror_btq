@@ -5,7 +5,7 @@
 
 
 <form action="/yourbag" method="post">
-<div class="left ">
+<div class="left">
 </div>
 <br>
 <% @items.each do |item| %>
@@ -20,21 +20,15 @@
 
         <tbody>
           <tr>
-            <td><%= item.name %> </td>
-            <td>$<%= item.price %> </td>
-            <td><input type="number" max="10" min="0" name="customer[items][][quanity]" id="<%= item.id %>" value="0"> 
-           
-            </td>
+            <td><%= item.name %></td>
+            <td>$<%= item.price %></td>
+            <td><input type="number" max="10" min="0" name="customer[items][][quanity]" id="<%= item.id %>" value="0"></td>
           </tr>
-          <input type="hidden" name="customer[items][][item_id]" value="<%= item.id %>">	
-          <input type="hidden" name="customer[items][][item_price]" value="<%= item.price %>">
-      
-        </tbody>
+          </tbody>
       </table>
-
-
-
-    	<br>
+      <input type="hidden" name="customer[items][][item_id]" value="<%= item.id %>">	
+      <input type="hidden" name="customer[items][][item_price]" value="<%= item.price %>">
+  
      <% end %>
 
      <a class="waves-effect waves-teal btn-flat #8d6e63 brown lighten-2"> <input type="submit" value="Add to Bag"> </a>
