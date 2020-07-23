@@ -1,5 +1,5 @@
 class CustomersItemsController < ApplicationController
-    
+ use Rack::Flash
 
   get '/yourbag' do
 
@@ -16,9 +16,13 @@ class CustomersItemsController < ApplicationController
    item = Item.find(items[:item_id])
   current_customer 
 CustomerItem.create(customer_id: current_customer.id, item_id: item.id, quanity: items[:quanity])
+      elsif 
+        items["quanity"] == "0"
+flash[:error] = "ERROR... no items in your cart"
+redirect '/welcome'
   end
     end
-redirect '/yourbag'
+    redirect '/yourbag'
       end   
 
         

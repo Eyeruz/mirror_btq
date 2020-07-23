@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-
+use Rack::Flash
 
   get '/welcome' do 
     redirect_to_if_not_logged_in

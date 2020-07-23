@@ -1,6 +1,7 @@
 require './config/environment'
-
+require 'rack-flash'
 class ApplicationController < Sinatra::Base
+use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -11,6 +12,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     redirect_to_if_logged_in
+    redirect_to_if_not_logged_in 
     @items = Item.all
   erb :welcome
   end
@@ -29,10 +31,10 @@ class ApplicationController < Sinatra::Base
     session[:user_id] = customer.id
     redirect '/welcome'
   else
-      redirect '/signup'
+   flash.now[:error] = "Incorrect Username or Password"
+   erb :login
       end
-    
-  end
+    end
 
 
   get '/signup' do 
@@ -43,15 +45,16 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do 
 customer = Customer.new(username: params[:username], email: params[:email], password: params[:password])
-
 if customer.save
 session[:user_id] = customer.id
 
     redirect '/welcome'
     else 
-      redirect '/signup'
+     flash.now[:error] = customer.errors.full_messages.join(", ")
+     erb :signup
   end
 end
+
 
 
 

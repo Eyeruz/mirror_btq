@@ -15,33 +15,28 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <div>
-
+    
     
 <!-- NOTES '/' PAGE LOOKING WERID FIX IT -->
     </div>
-            
-
-  
-  </head>
+          </head>
   <br>
+
+
 <body class="#d7ccc8 brown lighten-4 z-depth-5">
 <div class="container">
 <nav class="#a1887f brown lighten-3"> 
 <div class="container">
-<ul class="left">
+<ul style="padding-left: 0;
+display: inline;
+list-style-type: none;">
 <% unless logged_in? %>
-
 <li><a href="/login"> Login </a></li>  
-<li><a href="/signup"> Signup </a></li> 
-<li class="brand-logo"> Mirror Boutique </a><li>
+<li><a href="/signup"> Signup </a></li>
+<li class="home" >Welcome to Mirror Boutique </li>
 
 <% else %>
-<div class="conatainer">
-<ul class="right" style="marign: 25px">
-<li> <a href="/" class="brand-logo"> Mirror Boutique </a><li>
-</ul>
-</div>
-<li> <a href="/" class="left"> Home </a><li>
+<li> <a href="/"> Home </a><li>
 <li><b><a href="/logout"> Logout </a><b></li>  
 <li><b><a href="/yourbag"> View Your Bag </a></b></li>
 <!-- <b><a href=<b><a href='/items/new'> Add Item & Sell </a></b> <br> -->
@@ -50,8 +45,24 @@
 </ul>
 </nav>
 <nav class="#a1887f brown lighten-3">
-<div class="right"> <p>Happy shopping, <%= current_customer.username %>!</p>
+<p class="center"> <a href="/" class="brand-logo" style="left: 50%;
+transform: translatex(-50%);"> Mirror Boutique </a> </p>
+<div class="left"> <p> Happy shopping, <%= current_customer.username %>!</p>
+</div>
+<% end %>
 </nav>
+
+
+<% if flash[:error] %>
+<% flash[:error].tap do |error| %>
+  <div>
+    <%= error %>
+</div>
+  <% end %>
+<% end %>
+<% if flash[:notice] %>
+<div>
+<%= flash[:notice] %>
 </div>
 <% end %>
   <!-- add error messages before this line -->
@@ -62,10 +73,8 @@
 
 
 
-      <footer class="branding">
-        <small>&copy; 2020 <strong>Mirror..Mirror on the wall</strong></small>
-      </footer>
     </div>
+     <br>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
