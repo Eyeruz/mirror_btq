@@ -13,7 +13,7 @@ class CustomersItemsController < ApplicationController
    post '/yourbag' do 
     var = params[:customer][:items].select {|items| items[:quanity] != "0"}
     if var.empty? 
-      flash[:error] = "ERROR zero items selected"
+      flash[:error] = "No items selected, select the quantity of items to add in your bag."
       redirect '/welcome'
     else
       var.each do |items|

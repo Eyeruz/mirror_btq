@@ -1,6 +1,5 @@
-<h1> Your Bag </h1>
-<p> to make changes click item..</p>
-
+<h1 class="#8d6e63 brown-text text-darken-1" > <b> <i> Your Bag </i> </b> </h1>
+<p> to make changes click item name </p>
 
 <% price = 0 %>
 <% quanity = 0 %>
@@ -23,13 +22,14 @@
 <td> <%= item.quanity %> </td>
 <% price += item.item.price * item.quanity %> 
 
-  <% end %>
+
+ <% end %>
 
 </tr>
 </tbody>
 </table>
 
-<h3 class="#8d6e63 brown-text text-darken-1"> <b> Your Total <%= price %> <b> </h3>
+<h3 class="#8d6e63 brown-text text-darken-1"> <b> Your Total $<%= price %> <b> </h3>
     
 <b><a class="waves-effect waves-brown btn-flat  #8d6e63 brown lighten-2" style="float: right;" href="/checkout">checkout</a></b>
 <br>  
