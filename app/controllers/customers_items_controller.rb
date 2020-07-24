@@ -10,17 +10,24 @@ class CustomersItemsController < ApplicationController
 
 
 
-   post '/yourbag' do
-    params[:customer][:items].each do |items|
-      if items["quanity"] != "0"
+   post '/yourbag' do 
+    var = params[:customer][:items].select {|items| items[:quanity] != "0"}
+    if var.empty? 
+      flash[:error] = "ERROR zero items selected"
+      redirect '/welcome'
+    else
+      var.each do |items|
    item = Item.find(items[:item_id])
-  current_customer 
-CustomerItem.create(customer_id: current_customer.id, item_id: item.id, quanity: items[:quanity])
-      elsif 
-        items["quanity"] == "0"
-flash[:error] = "ERROR... no items in your cart"
-redirect '/welcome'
+
+   ci = CustomerItem.find_or_create_by(customer_id:current_customer.id,item_id: item.id)
+   if ci.quanity == nil 
+    ci.update(quanity:items[:quanity])
+   else
+    q = items[:quanity].to_i
+    ci.update(quanity: ci.quanity += q )
+   end
   end
+
     end
     redirect '/yourbag'
       end   
@@ -30,7 +37,6 @@ redirect '/welcome'
 get '/edit_bag' do
      @items = current_customer.items
      erb :'customer_items/edit_bag'
-    
     end
 
          

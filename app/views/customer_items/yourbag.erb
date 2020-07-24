@@ -1,15 +1,16 @@
 <h1> Your Bag </h1>
 <p> to make changes click item..</p>
-<form action='/yourbag' method="get">
+
 
 <% price = 0 %>
 <% quanity = 0 %>
-<% @cci.map do |item| %>
-  <table class="responsive-table highlight">
+
+<table class="striped #8d6e63 brown-text text-darken-1">
+  <% @cci.map do |item| %>
   <thead>
   <tr>
-<th> Item name: </th>
-<th> Item price: </th>
+<th> Item Name: </th>
+<th> Item Price: </th>
 <th> Item Quantity: </th>
 </tr>
 </thead>
@@ -28,8 +29,8 @@
 </tbody>
 </table>
 
-<p> Your Total <%= price %> </p>
+<h3 class="#8d6e63 brown-text text-darken-1"> <b> Your Total <%= price %> <b> </h3>
     
-<b><a class="waves-effect waves-brown btn-flat  #8d6e63 brown lighten-2" href="/checkout">checkout</a></b>
+<b><a class="waves-effect waves-brown btn-flat  #8d6e63 brown lighten-2" style="float: right;" href="/checkout">checkout</a></b>
 <br>  
-</form>
+
